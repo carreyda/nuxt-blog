@@ -7,7 +7,7 @@ export default defineNuxtConfig({
   // 配置基础路径
   app: {
     baseURL: '/nuxt-blog/',
-    buildAssetsDir: '/nuxt-blog/_nuxt/', // 确保资源文件路径正确
+    buildAssetsDir: 'assets/', // 确保资源文件路径正确
   },
   // 启用静态生
   nitro: {
