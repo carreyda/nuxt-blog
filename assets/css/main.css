@@ -1,4 +1,8 @@
 @import "tailwindcss";
-@import "@nuxt/ui"; 
+@import "@nuxt/ui";
 
 /* 自定义样式可以在这里添加 */
+
+.h-16 {
+  height: 4rem;
+}
