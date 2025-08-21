@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 import type { NavigationMenuItem } from "@nuxt/ui";
-import { useColorMode } from "#imports";
 const colorMode = useColorMode();
 const items = ref<NavigationMenuItem[]>([
   {
@@ -62,7 +61,7 @@ const items = ref<NavigationMenuItem[]>([
         label: "起点导航",
         icon: "i-streamline-ultimate-color:website-build",
         description: "",
-        to: "/",
+        to: "/projects/start-navigation",
       },
       {
         label: "蓝图天气",
@@ -105,12 +104,14 @@ const items = ref<NavigationMenuItem[]>([
 ]);
 
 // 当前是否暗色
-const isDark = computed(() => colorMode.preference === "dark");
-
-// 切换主题
-const toggleTheme = () => {
-  colorMode.preference = isDark.value ? "light" : "dark";
-};
+const isDark = computed({
+  get() {
+    return colorMode.value === "dark";
+  },
+  set(_isDark) {
+    colorMode.preference = _isDark ? "dark" : "light";
+  },
+});
 </script>
 
 <template>
@@ -124,22 +125,13 @@ const toggleTheme = () => {
         <img src="../../public/favicon.ico" alt="图标" />
       </div>
       <div class="flex items-center justify-end lg:flex-1 gap-1.5">
-        <UButton
-          :icon="
-            isDark ? 'i-heroicons-moon-20-solid' : 'i-heroicons-sun-20-solid'
-          "
-          variant="ghost"
-          size="lg"
-          aria-label="切换主题"
-          class="transition-transform duration-300 hover:rotate-180"
-          @click="toggleTheme"
-        >
-          <Transition name="fade" mode="out-in">
-            <span :key="colorMode.preference">
-              {{ isDark ? "暗色模式" : "亮色模式" }}
-            </span>
-          </Transition>
-        </UButton>
+        <ClientOnly v-if="!colorMode?.forced">
+          <USwitch
+            v-model="isDark"
+            unchecked-icon="i-lucide-moon"
+            checked-icon="i-lucide-sun"
+          />
+        </ClientOnly>
       </div>
     </div>
     <UNavigationMenu

@@ -1,0 +1,19 @@
+[
+  {
+    "name": "AI导航",
+    "icon：": "",
+    "children": [
+      {
+        "name": "综合类",
+        "icon：": "",
+        "children": [
+          {
+            "name": "ChatGPT",
+            "icon：": "",
+            "url": "https://chatgpt.com/"
+          }
+        ]
+      }
+    ]
+  }
+]
