@@ -67,7 +67,7 @@ const items = ref<NavigationMenuItem[]>([
         label: "蓝图天气",
         icon: "i-streamline-ultimate-color:weather-sun",
         description: "",
-        to: "/",
+        to: "/projects/blueprint-weather",
       },
       {
         label: "光明新闻",

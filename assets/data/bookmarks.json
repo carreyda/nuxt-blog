@@ -1,18 +1,33 @@
 [
   {
     "name": "AI导航",
-    "icon：": "",
+    "icon": "",
+    "multiLevel": true,
     "children": [
       {
         "name": "综合类",
-        "icon：": "",
+        "icon": "",
+        "url": "",
         "children": [
           {
             "name": "ChatGPT",
-            "icon：": "",
+            "icon": "",
             "url": "https://chatgpt.com/"
           }
         ]
+      }
+    ]
+  },
+  {
+    "name": "编程社区",
+    "icon": "",
+    "multiLevel": false,
+    "children": [
+      {
+        "name": "GitHub",
+        "icon": "",
+        "url": "https://github.com/",
+        "children": []
       }
     ]
   }

@@ -9,6 +9,9 @@ export default defineNuxtConfig({
   app: {
     baseURL: '/nuxt-blog/',
     buildAssetsDir: 'assets/', // 确保资源文件路径正确
+    head: {
+      link: [{ rel: 'icon', type: 'image/x-icon', href: '/nuxt-blog//favicon.ico' }]
+    }
   },
   // 启用静态生
   nitro: {
