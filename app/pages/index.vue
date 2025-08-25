@@ -1,10 +1,12 @@
 <template>
-  <div>
+  <div class="carreyda-blog w-screen h-screen overflow-hidden flex flex-col">
     <CommonHeader />
-    <div class="github-snake">
-      <!-- 利用github的代码提交记录绘制一个贪吃蛇小游戏 -->
-      <div v-html="githubCommitDataSvg"></div>
-    </div>
+    <main class="blog-main flex-1">
+      <div class="github-snake">
+        <!-- 利用github的代码提交记录绘制一个贪吃蛇小游戏 -->
+        <!-- <div v-html="githubCommitDataSvg"></div> -->
+      </div>
+    </main>
   </div>
 </template>
 

@@ -32,7 +32,10 @@ export default defineNuxtConfig({
     '~': resolve(__dirname, './'),
     '@': resolve(__dirname, './')
   },
-
+  colorMode: {
+    preference: 'system',
+    fallback: 'dark',
+  },
   // 或者使用 Vite 配置
   vite: {
     resolve: {
@@ -40,7 +43,8 @@ export default defineNuxtConfig({
         '~': resolve(__dirname, './'),
         '@': resolve(__dirname, './')
       }
-    }, plugins: [
+    },
+    plugins: [
       tailwindcss(),
     ],
   }

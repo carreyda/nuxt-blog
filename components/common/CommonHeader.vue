@@ -2,6 +2,8 @@
 import { ref, computed } from "vue";
 import type { NavigationMenuItem } from "@nuxt/ui";
 const colorMode = useColorMode();
+console.log("colorMode:", colorMode);
+
 const items = ref<NavigationMenuItem[]>([
   {
     label: "首页",
@@ -121,15 +123,18 @@ const isDark = computed({
     <div
       class="w-full max-w-(--ui-container) mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-3 h-full relative"
     >
-      <div class="lg:flex-1 flex items-center gap-1.5 min-w-0">
-        <img src="../../public/favicon.ico" alt="图标" />
-      </div>
+      <a
+        href="/"
+        class="lg:flex-1 flex items-center gap-1.5 min-w-0 text-primary"
+      >
+        {{'<Carreyda />'}}
+      </a>
       <div class="flex items-center justify-end lg:flex-1 gap-1.5">
         <ClientOnly v-if="!colorMode?.forced">
           <USwitch
             v-model="isDark"
-            unchecked-icon="i-lucide-moon"
-            checked-icon="i-lucide-sun"
+            unchecked-icon="i-lucide-sun"
+            checked-icon="i-lucide-moon"
           />
         </ClientOnly>
       </div>
@@ -146,13 +151,5 @@ const isDark = computed({
   .header-nav {
     transform: translate(-50%, 0);
   }
-}
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.3s;
-}
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
 }
 </style>
