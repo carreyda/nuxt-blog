@@ -25,7 +25,12 @@ export default defineNuxtConfig({
   },
   css: ['~/assets/css/main.css'],
   ui: {
-    fonts: false
+    fonts: false,
+    theme: {
+      colors: [
+        'primary',
+      ]
+    }
   },
   // 显式配置路径别名（如果需要的话）
   alias: {
@@ -33,7 +38,7 @@ export default defineNuxtConfig({
     '@': resolve(__dirname, './')
   },
   colorMode: {
-    preference: 'system',
+    preference: 'light',
     fallback: 'dark',
   },
   // 或者使用 Vite 配置

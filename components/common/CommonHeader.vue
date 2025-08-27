@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { ref, computed } from "vue";
+import { ref, computed, onMounted } from "vue";
 import type { NavigationMenuItem } from "@nuxt/ui";
+
 const colorMode = useColorMode();
-console.log("colorMode:", colorMode);
 
 const items = ref<NavigationMenuItem[]>([
   {
@@ -114,6 +114,19 @@ const isDark = computed({
     colorMode.preference = _isDark ? "dark" : "light";
   },
 });
+
+const changeTheme = (color: string) => {
+  const colorLevel = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950];
+  colorLevel.forEach((item) => {
+    document.documentElement.style.setProperty(
+      `--ui-color-primary-${item}`,
+      `var(--color-${color}-${item})`
+    );
+  });
+};
+onMounted(() => {
+  changeTheme("blue");
+});
 </script>
 
 <template>
@@ -131,6 +144,17 @@ const isDark = computed({
       </a>
       <div class="flex items-center justify-end lg:flex-1 gap-1.5">
         <ClientOnly v-if="!colorMode?.forced">
+          <UPopover>
+            <UIcon name="i-lucide:palette" class="size-5" />
+            <template #content>
+              <div class="flex">
+                <p @click="changeTheme('blue')">blue</p>
+                <p @click="changeTheme('rose')">rose</p>
+                <p @click="changeTheme('green')">green</p>
+              </div>
+            </template>
+          </UPopover>
+
           <USwitch
             v-model="isDark"
             unchecked-icon="i-lucide-sun"
