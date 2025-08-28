@@ -13,11 +13,12 @@ interface RequestOptions {
     /** 是否重定向，可选 */
     redirectFlag?: boolean,
     /** 错误处理回调函数 */
-    onError: (error: any) => void
+    onError: (error: any) => void,
 }
 
 interface ResponseData<T = any> {
-    code: number | string
+    code: number | string,
+    status?: number,
 }
 
 const useFetchApi = <T = any>(baseURL = '') => {
@@ -69,7 +70,7 @@ const useFetchApi = <T = any>(baseURL = '') => {
 }
 
 // 错误处理函数
-const handleApiError = (error: any, { redirectFlag }: { redirectFlag: boolean }) => {
+const handleApiError = (error: Error, { redirectFlag }: { redirectFlag: boolean }) => {
     if (import.meta.client && redirectFlag) {
         // 在客户端处理重定向
         console.error('client API Error:', error)

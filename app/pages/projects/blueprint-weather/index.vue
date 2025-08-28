@@ -1,5 +1,9 @@
 <template>
-  <div class="weather-layout"></div>
+  <div
+    class="blueprint-weather w-screen h-screen justify-center items-center overflow-hidden"
+  >
+    <div class="md:w-[37.5rem]"></div>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -12,6 +16,7 @@ const weatherToken = ref("");
 const createToken = async () => {
   const token = await generateJWT();
   weatherToken.value = token;
+  window.localStorage.setItem("blueprint-weather-token", token);
   getWeatherData();
 };
 const getWeatherData = () => {
@@ -22,7 +27,7 @@ const getWeatherData = () => {
         Authorization: `Bearer ${weatherToken.value}`, // 添加Authorization头
       }
     )
-    .then((res: any) => {
+    .then((res) => {
       if (typeof res === "object" && res?.status === 401) {
         // 401 未授权处理
         createToken();
@@ -34,6 +39,8 @@ const getWeatherData = () => {
 };
 
 onMounted(() => {
+  weatherToken.value =
+    window.localStorage.getItem("blueprint-weather-token") || "";
   getWeatherData();
 });
 </script>
