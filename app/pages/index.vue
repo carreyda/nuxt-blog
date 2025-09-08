@@ -1,21 +1,57 @@
+我的移动设备
 <template>
-  <div class="carreyda-blog w-screen h-screen overflow-hidden flex flex-col">
+  <div class="w-screen h-screen overflow-hidden flex flex-col carreyda-blog">
     <CommonHeader />
-    <main class="blog-main flex-1">
-      <div class="github-snake">
-        <!-- 利用github的代码提交记录绘制一个贪吃蛇小游戏 -->
-        <!-- <div v-html="githubCommitDataSvg"></div> -->
+    <main class="flex flex-col flex-1 items-center justify-center blog-main">
+      <div
+        :class="[
+          'flex relative transition duration-300 ease-in-out mian-center',
+          isAvatarAlone ? '-translate-y-[200%]' : 'translate-y-0',
+        ]"
+      >
+        <div class="center-left">
+          <div
+            class="left-avator"
+            @click="isAvatarAlone = !isAvatarAlone"
+          ></div>
+        </div>
+        <div
+          :class="['center-right overflow-hidden', isAvatarAlone && 'w-0 h-0']"
+        >
+          <div class="github-snake">
+            <!-- 利用github的代码提交记录绘制一个贪吃蛇小游戏 -->
+            <div v-html="githubCommitDataSvg"></div>
+          </div>
+        </div>
       </div>
+      <div class="mian-bttom">行有不得，返诸求己。</div>
     </main>
+    <footer class="fixed bottom-0 w-full h-4 flex items-center justify-center">
+      2025
+    </footer>
   </div>
 </template>
 
 <script lang="ts" setup>
+import { ref, computed } from "vue";
 import CommonHeader from "@/components/common/CommonHeader.vue";
-import { ref } from "vue";
+import githubCommit from "../../assets/data/githubCommit.json";
+
+interface GithubCommit {
+  x: number;
+  y: number;
+  level: number;
+  date: string;
+  count: number;
+  eaten?: boolean;
+}
+
+// 头像是否单独展示
+const isAvatarAlone = ref(true);
 
 // github提交记录数据
-const githubCommitData = ref<any[]>([]);
+const githubCommitData = ref<GithubCommit[]>([]);
+const githubCommitDefaultData = computed(() => githubCommit);
 const githubCommitDataLoading = ref<boolean>(true);
 const githubCommitDataEmpty = ref<boolean>(true);
 const cellSize = 10;
@@ -28,6 +64,7 @@ const cellColors = [
   "#56d364", // level 4
 ];
 const githubCommitDataSvg = ref<string>("");
+githubCommitData.value = githubCommitDefaultData.value;
 
 // 发起请求获取github的代码提交记录
 const getGithubCommitData = async () => {
@@ -44,10 +81,10 @@ const getGithubCommitData = async () => {
     const actualData = JSON.parse(data.contents);
     githubCommitData.value = [...actualData];
     githubCommitDataLoading.value = false;
-    renderGithubCommitData();
   } catch (error) {
     console.error("获取数据失败:", error);
   }
+  renderGithubCommitData();
 };
 
 // 生成svg渲染github提交记录
@@ -79,8 +116,25 @@ const renderGithubCommitData = () => {
 
   githubCommitDataSvg.value += ` </g></svg>`;
 };
-
+renderGithubCommitData();
 getGithubCommitData();
 </script>
 
-<style></style>
+<style scoepd lang="scss">
+.carreyda-blog {
+  .blog-main {
+    .mian-center {
+      .center-left {
+        .left-avator {
+          width: 120px;
+          height: 120px;
+          border-radius: 50%;
+          background: url("../../assets/images/author.png") no-repeat center;
+          background-size: cover;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+</style>

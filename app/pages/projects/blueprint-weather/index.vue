@@ -2,7 +2,7 @@
   <div
     class="blueprint-weather w-screen h-screen justify-center items-center overflow-hidden"
   >
-    <div class="md:w-[37.5rem]"></div>
+    <div class="flex items-center justify-center w-full min-h-screen"></div>
   </div>
 </template>
 
@@ -10,6 +10,7 @@
 import { ref, onMounted } from "vue";
 import { getWeather } from "../../../../apis/weather";
 import { generateJWT } from "@/services/tokenService";
+import { changeTheme } from "@/utils";
 
 // 获取天气数据
 const weatherToken = ref("");
@@ -39,6 +40,8 @@ const getWeatherData = () => {
 };
 
 onMounted(() => {
+  // 蓝图天气默认切换为橙色主题
+  changeTheme("orange");
   weatherToken.value =
     window.localStorage.getItem("blueprint-weather-token") || "";
   getWeatherData();
