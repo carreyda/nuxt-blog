@@ -1,6 +1,6 @@
 [
   {
-    "name": "AI导航",
+    "name": "AI助手",
     "icon": "",
     "multiLevel": true,
     "children": [
@@ -11,8 +11,28 @@
         "children": [
           {
             "name": "ChatGPT",
-            "icon": "",
+            "icon": "https://cdn.oaistatic.com/assets/favicon-eex17e9e.ico",
             "url": "https://chatgpt.com/"
+          },
+          {
+            "name": "Gemini",
+            "icon": "https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg",
+            "url": "https://gemini.google.com/app/"
+          },
+          {
+            "name": "腾讯混元",
+            "icon": "https://cdn-portal.hunyuan.tencent.com/public/static/logo/favicon.png",
+            "url": "https://hunyuan.tencent.com/"
+          },
+          {
+            "name": "腾讯元宝",
+            "icon": "https://cdn-hybrid-prod.hunyuan.tencent.com/manual/favicon.png",
+            "url": "https://yuanbao.tencent.com/chat/"
+          },
+          {
+            "name": "DeepSeek",
+            "icon": "https://chat.deepseek.com/favicon.svg",
+            "url": "https://chat.deepseek.com/"
           }
         ]
       }

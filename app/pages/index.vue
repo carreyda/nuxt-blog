@@ -1,4 +1,3 @@
-我的移动设备
 <template>
   <div class="w-screen h-screen overflow-hidden flex flex-col carreyda-blog">
     <CommonHeader />
