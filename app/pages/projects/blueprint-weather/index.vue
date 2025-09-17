@@ -8,9 +8,9 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
-import { getWeather } from "../../../../apis/weather";
+import { getWeather } from "@/services/apis/weather";
 import { generateJWT } from "@/services/tokenService";
-import { changeTheme } from "@/utils";
+import { changeTheme } from "@/app/utils";
 
 // 获取天气数据
 const weatherToken = ref("");

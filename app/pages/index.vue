@@ -33,8 +33,8 @@
 
 <script lang="ts" setup>
 import { ref, computed } from "vue";
-import CommonHeader from "@/components/common/CommonHeader.vue";
-import githubCommit from "../../assets/data/githubCommit.json";
+import CommonHeader from "@/app/components/common/CommonHeader.vue";
+import githubCommit from "@/app/assets/data/githubCommit.json";
 
 interface GithubCommit {
   x: number;
@@ -128,7 +128,7 @@ getGithubCommitData();
           width: 120px;
           height: 120px;
           border-radius: 50%;
-          background: url("../../assets/images/author.png") no-repeat center;
+          background: url("../assets/images/author.png") no-repeat center;
           background-size: cover;
           cursor: pointer;
         }

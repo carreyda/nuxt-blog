@@ -28,6 +28,7 @@
     "@iconify-json/catppuccin": "^1.2.16",
     "@iconify-json/lucide": "^1.2.62",
     "@iconify-json/streamline-ultimate-color": "^1.2.2",
-    "sass-embedded": "^1.90.0"
+    "sass-embedded": "^1.90.0",
+    "vite-plugin-svg-icons": "^2.0.1"
   }
 }

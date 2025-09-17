@@ -1,6 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import { resolve } from 'path'
 import tailwindcss from "@tailwindcss/vite";
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
@@ -23,7 +24,7 @@ export default defineNuxtConfig({
   experimental: {
     payloadExtraction: false
   },
-  css: ['~/assets/css/main.css'],
+  css: ['./app/assets/css/main.css'],
   ui: {
     fonts: false,
     theme: {
@@ -51,6 +52,14 @@ export default defineNuxtConfig({
     },
     plugins: [
       tailwindcss(),
+      createSvgIconsPlugin({
+        // 指定需要缓存的图标文件夹
+        iconDirs: [resolve(process.cwd(), 'app/assets/svg')],
+        // 指定 symbolId 格式
+        symbolId: 'icon-[name]',// 添加这些配置
+        inject: 'body-last',
+        customDomId: '__svg__icons__dom__'
+      })
     ],
   }
 })

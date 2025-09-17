@@ -3,37 +3,7 @@
     <header class="w-screen h-16 navigation-header">
       <UContainer>
         <div class="flex items-center header-content">
-          <svg
-            t="1758025996867"
-            class="icon"
-            viewBox="0 0 1024 1024"
-            version="1.1"
-            xmlns="http://www.w3.org/2000/svg"
-            p-id="16245"
-            width="64"
-            height="64"
-          >
-            <path
-              d="M493.354667 493.354667H353.28a139.989333 139.989333 0 1 1 0-280.021334 139.989333 139.989333 0 0 1 139.989333 139.989334v139.989333z"
-              fill="#ED8162"
-              p-id="16246"
-            ></path>
-            <path
-              d="M673.322667 493.354667H533.333333V353.28a139.989333 139.989333 0 1 1 280.021334 0 139.989333 139.989333 0 0 1-140.032 139.989333"
-              fill="#F7D046"
-              p-id="16247"
-            ></path>
-            <path
-              d="M213.333333 673.322667A139.989333 139.989333 0 0 1 353.322667 533.333333h139.989333v139.989334a139.989333 139.989333 0 1 1-279.978667 0z"
-              fill="#7F8BF6"
-              p-id="16248"
-            ></path>
-            <path
-              d="M673.322667 813.354667A139.989333 139.989333 0 0 1 533.333333 673.28V533.333333h139.989334a139.989333 139.989333 0 1 1 0 280.021334"
-              fill="#ADD67D"
-              p-id="16249"
-            ></path>
-          </svg>
+          <SvgIcon name="logo" />
           <p>起点导航</p>
         </div></UContainer
       >
@@ -83,12 +53,12 @@
 
 <script lang="ts" setup>
 import { computed } from "vue";
-import bookmarks from "@/assets/data/bookmarks.json";
+import bookmarks from "@/app/assets/data/bookmarks.json";
 
 const bookmarksData = computed(() => bookmarks);
 </script>
 
-<style>
+<style lang="scss" scoped>
 .middle-card {
   background: #fbfafa;
   border: 1px solid #dee3e3;
@@ -106,6 +76,10 @@ const bookmarksData = computed(() => bookmarks);
   transition: all 0.3s linear;
   width: 297px;
   margin: 10px;
+  img {
+    width: 32px;
+    height: 32px;
+  }
 }
 .card {
   width: 300px;

@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts" setup>
-import CommonHeader from "@/components/common/CommonHeader.vue";
+import CommonHeader from "@/app/components/common/CommonHeader.vue";
 </script>
 
 <style></style>
