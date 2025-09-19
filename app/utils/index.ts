@@ -7,3 +7,8 @@ export const changeTheme = (color: string) => {
         );
     });
 };
+
+export const judgeProtocol = () => {
+    return location.protocol.slice(0, -1);;
+};
+

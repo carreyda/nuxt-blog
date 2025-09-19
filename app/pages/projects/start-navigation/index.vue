@@ -3,7 +3,7 @@
     <header class="w-screen h-16 navigation-header">
       <UContainer>
         <div class="flex items-center header-content">
-          <SvgIcon name="logo" />
+          <SvgIcon name="start-navigation-logo" />
           <p>起点导航</p>
         </div></UContainer
       >
