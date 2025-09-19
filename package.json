@@ -18,6 +18,7 @@
     "eslint": "^9.33.0",
     "jose": "^6.0.13",
     "nuxt": "^4.0.3",
+    "qweather-icons": "^1.8.0",
     "scss": "^0.2.4",
     "tailwindcss": "^4.1.12",
     "typescript": "^5.9.2",
