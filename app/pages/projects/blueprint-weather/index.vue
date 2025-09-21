@@ -45,11 +45,13 @@
                   />
                   武汉
                 </p>
-                <p>
+                <p class="flex items-center">
                   <img
                     class="block w-10 h-10 m-auto rounded-full"
-                    src="https://a.hecdn.net/img/common/icon/202106d/300.png"
+                    :src="`
+https://a.hecdn.net/img/common/icon/202106d/${weatherData?.icon}.png`"
                     alt=""
+                    referrerpolicy="no-referrer"
                   />{{ weatherData?.text }}
                 </p>
               </div>
@@ -69,31 +71,52 @@ import { generateJWT } from "@/services/tokenService";
 import { changeTheme, judgeProtocol } from "@/app/utils";
 import "qweather-icons/font/qweather-icons.css";
 
-// 获取天气数据
-const weatherToken = ref("");
-const createToken = async () => {
+interface WeatherResponseDataNow {
+  obsTime: string;
+  temp: string;
+  feelsLike: string;
+  icon: string;
+  text: string;
+  wind360: string;
+  windDir: string;
+  windScale: string;
+  windSpeed: string;
+  humidity: string;
+  precip: string;
+  pressure: string;
+  vis: string;
+  cloud: string;
+  dew: string;
+}
+
+// 获取当前城市默认天气数据
+
+// 发起请求时需要携带的token
+const weatherApiToken = ref("");
+
+// 创建并存储请求时需要的token
+const createWeatherApiToken = async () => {
   const token = await generateJWT();
-  weatherToken.value = token;
+  weatherApiToken.value = token;
   window.localStorage.setItem("blueprint-weather-token", token);
   getWeatherData();
 };
 
-const weatherData = ref({});
+const weatherData = ref<WeatherResponseDataNow | null>(null);
 const getWeatherData = () => {
   getWeather
     .get(
       {}, // query参数
       {
-        Authorization: `Bearer ${weatherToken.value}`, // 添加Authorization头
+        Authorization: `Bearer ${weatherApiToken.value}`, // 添加Authorization头
       }
     )
-    .then((res: any) => {
+    .then((res) => {
       if (typeof res === "object" && res?.status === 401) {
         // 401 未授权处理
-        createToken();
+        createWeatherApiToken();
       } else {
-        weatherData.value = res?.now;
-        console.log("当前的天气数据：", weatherData.value);
+        weatherData.value = res?.now ?? null;
       }
     })
     .catch((err) => {
@@ -106,7 +129,7 @@ const isHttps = ref(true);
 onMounted(() => {
   // 蓝图天气默认切换为橙色主题
   changeTheme("orange");
-  weatherToken.value =
+  weatherApiToken.value =
     window.localStorage.getItem("blueprint-weather-token") || "";
   isHttps.value = judgeProtocol() === "https";
   if (isHttps.value) {
