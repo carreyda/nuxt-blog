@@ -2,8 +2,6 @@
   <CommonHeader />
 </template>
 
-<script lang="ts" setup>
-import CommonHeader from "@/app/components/common/CommonHeader.vue";
-</script>
+<script lang="ts" setup></script>
 
 <style></style>

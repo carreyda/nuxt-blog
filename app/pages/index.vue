@@ -33,7 +33,6 @@
 
 <script lang="ts" setup>
 import { ref, computed } from "vue";
-import CommonHeader from "@/app/components/common/CommonHeader.vue";
 import githubCommit from "@/app/assets/data/githubCommit.json";
 
 interface GithubCommit {
@@ -117,6 +116,11 @@ const renderGithubCommitData = () => {
 };
 renderGithubCommitData();
 getGithubCommitData();
+onMounted(() => {
+  // 切换 Nuxt UI 颜色模式为深色
+  const colorMode = useColorMode();
+  colorMode.preference = "dark";
+});
 </script>
 
 <style scoepd lang="scss">

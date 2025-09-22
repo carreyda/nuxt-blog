@@ -1,5 +1,5 @@
 <template>
-  <svg :class="['svg-icon', className]" aria-hidden="true">
+  <svg :class="['svg-icon w-4 h-4', className]" aria-hidden="true">
     <use :href="`#icon-${name}`" />
   </svg>
 </template>
@@ -13,8 +13,6 @@ defineProps<{
 
 <style scoped>
 .svg-icon {
-  width: 1em;
-  height: 1em;
   vertical-align: -0.15em;
   fill: currentColor;
   overflow: hidden;
