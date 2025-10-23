@@ -1,90 +1,72 @@
 <template>
   <div
-    class="flex items-center justify-center w-screen h-screen overflow-hidden bg-slate-200 blueprint-weather"
+    class="flex flex-col items-center justify-center w-screen h-screen overflow-hidden blueprint-weather"
   >
-    <main
-      class="flex w-4/5 h-4/5 mx-auto my-auto min-h-0 min-w-0 rounded weather-main"
-    >
-      <nav
-        class="flex flex-col items-center justify-between w-fit h-full p-4 mr-4 main-nav"
-      >
-        <div class="flex flex-col items-center justify-between nav-top">
-          <div class="flex flex-col items-center top-info">
-            <SvgIcon
-              name="blueprint-weather-logo-1"
-              class-name="block w-8 h-8 "
-            />
-            <h3 class="font-bold">蓝图天气</h3>
-          </div>
-          <div class="top-menu"></div>
-        </div>
-        <div class="nav-bottom"></div>
-      </nav>
-      <section class="flex flex-1 p-4 weather-section">
-        <div class="w-3/4 section-left">
-          <div class="flex h-fit mb-8 left-header">
-            <div class="flex header-slogan">
-              <img
-                class="block w-10 h-10 m-auto rounded-full"
-                src="../../../assets//images//author.png"
-                alt=""
+    <UHeader class="w-full weather-header">
+      <template #title>
+        <SvgIcon name="blueprint-weather-logo-1" class-name="block w-12 h-12" />
+        <h3 class="font-bold leading-10">蓝图天气</h3>
+      </template>
+      <div class="flex">
+        <p>首页</p>
+        <p>7日预报</p>
+        <p>30日预报</p>
+        <p>切换城市</p>
+      </div>
+      <template #right>
+        <UColorModeButton />
+        <UPopover>
+          <UAvatar
+            src="https://api.dicebear.com/9.x/adventurer/svg"
+            size="xl"
+          />
+          <template #content>
+            <div class="h-14 ml-3 slogan-text">
+              <p class="h-1/2">Hello,</p>
+              <p class="h-1/2 font-bold">Carreyda</p>
+            </div>
+          </template>
+        </UPopover>
+      </template>
+    </UHeader>
+    <UContainer class="flex-1">
+      <main class="weather-main">
+        <UCard class="mt-8" variant="subtle">
+          <img
+            class="block w-32 h-32 m-auto rounded-full"
+            :src="`https://a.hecdn.net/img/common/icon/202106d/${weatherData?.icon}.png`"
+            alt=""
+            referrerpolicy="no-referrer"
+          />
+          <div>
+            <p class="flex w-fit mb-4 items-center">
+              <SvgIcon
+                name="blueprint-weather-location"
+                class-name="w-8 h-8 m-auto mr-4 card-svg"
               />
-              <div class="h-14 ml-3 slogan-text">
-                <p class="h-1/2">Hello,</p>
-                <p class="h-1/2 font-bold">Carreyda</p>
-              </div>
-            </div>
+              武汉
+            </p>
+            <p class="flex w-fit mb-4 items-center" @click="getWeatherData">
+              <SvgIcon
+                name="blueprint-weather-refresh"
+                class-name="w-8 h-8 m-auto mr-4 current-pointer card-svg"
+              />更新时间：{{
+                dayjs(weatherData?.obsTime).format("YYYY-MM-DD HH:mm")
+              }}
+            </p>
+            <p class="flex w-fit mb-4 items-center">
+              <SvgIcon
+                name="blueprint-weather-thermometer"
+                class-name="w-8 h-8 m-auto card-svg"
+              />
+              <span class="font-bold text-[32px]"
+                >{{ weatherData?.temp }}℃</span
+              >
+            </p>
           </div>
-          <div class="flex justify-between left-main">
-            <div
-              class="flex w-45/100 justify-between bg-gradient-to-r from-blue-100 to-orange-100 rounded-xl p-6 shadow-md main-card-temp"
-            >
-              <div class="card-info">
-                <p class="flex w-fit mb-4 items-center">
-                  <SvgIcon
-                    name="blueprint-weather-location"
-                    class-name="w-8 h-8 m-auto mr-4 card-svg"
-                  />
-                  武汉
-                </p>
-                <p class="flex w-fit mb-4 items-center">
-                  <img
-                    class="block w-8 h-8 m-auto mr-4 rounded-full"
-                    :src="`
-https://a.hecdn.net/img/common/icon/202106d/${weatherData?.icon}.png`"
-                    alt=""
-                    referrerpolicy="no-referrer"
-                  />{{ weatherData?.text }}
-                </p>
-                <p class="flex w-fit mb-4 items-center" @click="getWeatherData">
-                  <SvgIcon
-                    name="blueprint-weather-refresh"
-                    class-name="w-8 h-8 m-auto mr-4 current-pointer card-svg"
-                  />更新时间：{{
-                    dayjs(weatherData?.obsTime).format("YYYY-MM-DD HH:mm")
-                  }}
-                </p>
-              </div>
-              <div class="card-temperature">
-                <p class="flex mb-4 items-center">
-                  <SvgIcon
-                    name="blueprint-weather-thermometer"
-                    class-name="w-8 h-8 m-auto card-svg"
-                  />
-                  <span class="font-bold text-[32px]"
-                    >{{ weatherData?.temp }}℃</span
-                  >
-                </p>
-              </div>
-            </div>
-            <div
-              class="flex w-45/100 justify-between bg-gradient-to-r from-blue-100 to-orange-100 rounded-xl p-6 shadow-md main-card-quality"
-            ></div>
-          </div>
-        </div>
-        <div class="section-right"></div>
-      </section>
-    </main>
+        </UCard>
+      </main>
+    </UContainer>
   </div>
 </template>
 

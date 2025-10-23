@@ -54,6 +54,19 @@ export default defineNuxtConfig({
         inject: 'body-last',
         customDomId: '__svg__icons__dom__'
       })
-    ],
+    ], server: {
+      hmr: {
+        protocol: 'ws',
+        host: 'localhost',
+      },
+      watch: {
+        usePolling: false,
+        // 排除不需要监听的目录
+        ignored: ['**/node_modules/**', '**/.git/**', '**/dist/**']
+      }
+    },
+    optimizeDeps: {
+      include: ['vue', '@vue/runtime-core', '@vue/shared']
+    }
   }
 })
